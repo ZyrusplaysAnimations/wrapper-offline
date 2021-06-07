@@ -11,7 +11,7 @@ endlocal
 set VERBOSEWRAPPER=n
 
 :: Won't check for dependencies (flash, node, etc) and goes straight to launching. Useful for speedy launching post-install. Default: n
-set SKIPCHECKDEPENDS=y
+set SKIPCHECKDEPENDS=n
 
 :: Won't install dependencies, regardless of check results. Overridden by SKIPCHECKDEPENDS. Mostly useless, why did I add this again? Default: n
 set SKIPDEPENDINSTALL=n
@@ -26,10 +26,10 @@ set APPCHROMIUM=y
 set CUSTOMBROWSER=n
 
 :: Lets the launcher know what browser framework is being used. Mostly used by the Flash installer. Accepts "chrome", "firefox", and "n". Default: n
-set BROWSER_TYPE=chrome
+set BROWSER_TYPE=n
 
 :: Runs through all of the scripts code, while never launching or installing anything. Useful for development. Default: n
-set DRYRUN=n
+set DRYRUN=y
 
 :: Makes it so it uses the Cepstral website instead of VFProxy. Default: n
 set CEPSTRAL=n
@@ -43,3 +43,7 @@ set DEVMODE=n
 
 :: Tells settings.bat which port the frontend is hosted on. (If changed manually, you MUST also change the value of "SERVER_PORT" to the same value in wrapper\env.json) Default: 4343
 set PORT=4343
+
+:: Automatically restarts the NPM whenever it crashes. Default: y
+set AUTONODE=y
+

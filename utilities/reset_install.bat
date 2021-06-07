@@ -65,42 +65,70 @@ color cf
 echo Are you ABSOLUTELY sure you wish to do this?
 echo You are entirely responsible for losing your videos.
 echo:
-echo ^(Before proceeding with this, you should probably
-echo run the included backup tool to backup any videos,
-echo characters and imported assets, then place that folder
-echo elsewhere so that you can put them back in later.^)
 echo:
 echo Type y to reset Offline, and n to close this script.
 :resetconfirmretry2
 set /p RESETCHOICE= Response:
 echo:
 if not '%resetchoice%'=='' set resetchoice=%resetchoice:~0,1%
-if /i '%resetchoice%'=='y' goto dothereset
+if /i '%resetchoice%'=='y' goto backuptoolconfirm
 if /i '%resetchoice%'=='n' exit
-if /i '%resetchoice%'=='yes' goto dothereset
+if /i '%resetchoice%'=='yes' goto backuptoolconfirm
 if /i '%resetchoice%'=='no' exit
 goto resetconfirmretry2
 
+:backuptoolconfirm
+color 0f
+echo Before we proceed, would you like to run the
+echo backup tool to backup all your personal
+echo files, like the stuff in your _SAVED folder
+echo or the stuff you've imported? [Y/n]
+echo:
+:backuptoolconfirmretry
+set /p BACKUPCHOICE= Response:
+echo:
+if not '%backupchoice%'=='' set backupchoice=%backupchoice:~0,1%
+if /i '%backupchoice%'=='y' (
+	:launchbackuptool
+	start backup_and_restore.bat
+	echo After doing the backup, please move the folder
+	echo somewhere else outside of the Wrapper: Offline
+	echo directory in case this batch file accidentally
+	echo deletes the backup.
+	echo:
+	pause
+	goto dothereset
+)
+if /i '%backupchoice%'=='n' ( goto dothereset )
+if /i '%backupchoice%'=='yes' ( goto launchbackuptool )
+if /i '%backupchoice%'=='no' ( goto dothereset )
+goto backuptoolconfirmretry
+
 :dothereset
 
-color 0f
 set WRAPRESET=y
+echo The reset will start in exactly 10 seconds...
+PING -n 11 127.0.0.1>nul
 
 :: Reset _SAVED folder
-rd /q /s wrapper\_SAVED || set ERROR_DELSAVE=y
-md wrapper\_SAVED
+set count=0
+pushd wrapper\_SAVED
+FOR /f "delims=" %%i IN ('attrib.exe ./*.* ^| find /v "File not found - " ^| find /c /v ""') DO SET FILE_COUNT=%%i
+popd
+start powershell -ExecutionPolicy RemoteSigned -File "wrapper\delete.ps1" -min "%FILE_COUNT%" || set ERROR_DELSAVE=y
+if not exist "wrapper\_SAVED\_NO_REMÖVE" ( copy NUL "wrapper\_SAVED\_NO_REMÖVE">nul )
 
 :: Reset _CACHE folder
 rd /q /s wrapper\_CACHÉ || set ERROR_DELCACHE=y
 md wrapper\_CACHÉ
-copy NUL "wrapper\_CACHÉ\_NO_REMÖVE"
+copy NUL "wrapper\_CACHÉ\_NO_REMÖVE">nul
 
 :: Reset checks folder
 rd /q /s utilities\checks || set ERROR_DELCHECKS=y
 md utilities\checks
 
 :: Reset settings
-del /q /s utilities\config.bat || set ERROR_DELCONFIG=y
+del /q /s utilities\config.bat>nul || set ERROR_DELCONFIG=y
 echo :: Wrapper: Offline Config>> utilities\config.bat
 echo :: This file is modified by settings.bat. It is not organized, but comments for each setting have been added.>> utilities\config.bat
 echo :: You should be using settings.bat, and not touching this. Offline relies on this file remaining consistent, and it's easy to mess that up.>> utilities\config.bat
@@ -173,7 +201,7 @@ echo 	^</char^> >>theme.xml
 echo:>>theme.xml
 echo ^</theme^> >>theme.xml
 popd
-utilities\7za.exe a "server\store\3a981f5cb2739137\import\import.zip" "server\store\3a981f5cb2739137\import\theme.xml" >nul || set ERROR_DELIMPORT=y & goto skipimportreset
+call utilities\7za.exe a "server\store\3a981f5cb2739137\import\import.zip" "server\store\3a981f5cb2739137\import\theme.xml" >nul || set ERROR_DELIMPORT=y & goto skipimportreset
 del /q /s utilities\import_these || set ERROR_DELIMPORT=y & goto skipimportreset
 md utilities\import_these || set ERROR_DELIMPORT=y & goto skipimportreset
 :skipimportreset

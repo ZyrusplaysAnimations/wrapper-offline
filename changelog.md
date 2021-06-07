@@ -2,6 +2,40 @@
 # Wrapper: Offline Changelog
 This changelog is based off [Keep a Changelog](https://keepachangelog.com) and ~~somewhat but not really~~ adheres to [Semantic Versioning](https://semver.org/). If you have no idea what that means, basically this changelog is formatted in a specific consistent way, and version numbers are formatted as X.Y.Z, X being a major not-backwards-compatible update, Y being a feature update, and X being bug fixes.
 
+## Version 1.3.1 - 2021-05-24 - the file size update + stability
+### Added
+  - Reload settings and metadata option
+  - swf.css for page styling
+  - Gray cc and cc_browser
+### Removed (for cleanup you won't notice a thing)
+  - Removed configure_wrapper.bat as it was unnecessary
+  - Removed legacy_upgrade_wrapper.bat because there are no more legacy updates being pushed out
+  - Removed Git since it's downloaded upon installation
+  - Removed included biz themes (why???????)
+  - Removed blank Zimmer Twins theme from server\store\3a981f5cb2739137\cc_store
+  - Removed 2nd instance of GATOOLS.exe in server\store\3a981f5cb2739137
+  - Removed server\store\3a981f5cb2739137\zimmertwins.zip
+  - Removed wrapper\data folder
+  - Removed help.html
+  - Removed Vyond assets
+### Changed
+  - Compacted theme
+  - Renamed VERSIÖN variable in the video list to WRAPPER_VER
+  - Recompressed Avidemux, FlashPatch, and 7z1900 to .7z files
+  - Grounding script organized
+  - Commented list.css
+  - Moved version string to the footer like in 1.2.3
+### Fixed
+  - Updater now checks for .git existence
+  - Lil' Peepz actions (thanks JoshToons!)
+  - Truncated themelist works in the create page
+  - Fixed bug where Wrapper tries to load thumbnails from localhost instead of localhost:4343
+  - Updated Wrapper credits
+  - Character scaling
+
+### Fixed
+  - Updater now checks for .git existence
+
 ## Version 1.3.0 - 2021-04-24 - feature packed
 ## Build 12
 ### Added
@@ -38,7 +72,13 @@ This changelog is based off [Keep a Changelog](https://keepachangelog.com) and ~
   - CC Browser loading Comedy World no matter what
   - The theme list page being scrambled when dark mode is off
   - A missing page error that can't be refreshed out of
-
+## Build 32
+### Added
+  - Voice clip importing workaround
+### Changed
+  - Version string format changed
+### Fixed
+  - Every single function showing everytime the export video script opens "start_wrapper.bat".
 ## Version 1.2.3 - 2021-03-06 - i am HUNGRY FOR UPDATES!!!
 ### Added
   - Character browser

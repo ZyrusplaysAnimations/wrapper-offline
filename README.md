@@ -7,7 +7,7 @@ To start Wrapper: Offline on Windows, open `start_wrapper.bat`. It'll automate j
 If you want to import videos and characters from the original Wrapper or any other clones of it, open its folder and drag the "_SAVED" folder into Offline's "wrapper" folder. If you have already made any videos or characters, this will not work. Please only import on a new install with no saved characters or videos, or take the "_SAVED" folder in Offline out before dragging the old one in. If you want to import character IDs from the original LVM, you can paste `&original_asset_id=[ID HERE]` at the end of the link for the matching character creator.
 
 ## Updates & Support
-For support, the first thing you should do is read through `faq.md`, it most likely has what you want to know. If you can't find what you need, you can join the [Discord server](https://discord.gg/Kf7BzSw). Joining the support server is recommended, as there is a whole community to help you out.
+For support, the first thing you should do is [read through the wiki](https://github.com/Wrapper-Offline/wrapper-offline/wiki) it most likely has what you want to know. If you can't find what you need, you can join the [Discord server](https://discord.gg/Kf7BzSw). Joining the support server is recommended, as there is a whole community to help you out.
 
 ## Dependencies
 This program relies on Flash, Node.js and http-server to work properly. SilentCMD is also used to suppress all the extra logging noise you'd only need for troubleshooting and development. These all have been included with the project (utilities folder) to ensure full offline operation and will be installed if missing. The "wrapper" folder and http-server have their own dependencies, but they are included as well.
@@ -65,7 +65,7 @@ Wrapper: Offline credits:
 | The Invincible Sphynx Cat (B)    | Beta testing, suggestions, remastered GoAnimate tracks (provided separately, not included)                                                           |	
 | MJ, the Spirit (D) (B)	   | Facial expression fix, video/imported asset backup tool, action pack tool creator, bug fixes                                                         |
 | MegaT (C)                        | CC browser code                                                                                                                                      |
-| narutofan420                     | New CSS theme on video and theme lists, dark mode character creator                                                                                  |
+| narutofan420                     | Main developer of 1.3.1's base build, New CSS theme on video and theme lists, dark mode character creator                                                                                  |
 | Spark (D) (B)                    | Video list grid view, rewriting faq.html, other small tweaks.                                                                                        |
 
 These are unaffiliated people that they haven't directly done anything for the project (and probably don't even know it exists) but still deserve credit for their things. Kinda like a shoutout but in a project's readme. ***Please do not contact them about Wrapper: Offline.***

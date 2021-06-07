@@ -13,46 +13,17 @@
 
 <header>
 	<div id="logo_container">
-		<img id="logo" src="../assets/logo.svg" alt="Wrapper: Offline"/>
-		<span class="version">VERSIÖN</span>
+		<img id="logo" src="../img/list_logo.svg" alt="Wrapper: Offline"/>
 	</div>
 	<nav id="headbuttons">
-		<a class="button_small" onclick="document.getElementById('file').click()">UPLOAD A MOVIE</a>
-		<!-- <a class="button_small" onclick="document.getElementById('character_file').click()">UPLOAD A CHARACTER</a> -->
-		<!-- I marked it as HTML comment since I haven't gotten character uploading from the video list to work yet. ~xom-->
 		<div class="dropdown_contain button_small">
-			<div class="dropdown_button">CREATE A CHARACTER</div>
+			<div class="dropdown_button upload_button">UPLOAD</div>
 			<nav class="dropdown_menu">
-				<h2>Comedy World</h2>
-				<a href="/cc?themeId=family&bs=adam">Guy (Adam)</a>
-				<a href="/cc?themeId=family&bs=eve">Girl (Eve)</a>
-				<a href="/cc?themeId=family&bs=bob">Fat (Bob)</a>
-				<a href="/cc?themeId=family&bs=rocky">Buff (Rocky)</a>
-				<hr>
-				<h2>Anime</h2>
-				<a href="/cc?themeId=anime&bs=guy">Guy</a>
-				<a href="/cc?themeId=anime&bs=girl">Girl</a>
-				<a href="/cc?themeId=ninjaanime&bs=guy">Guy (Ninja)</a>
-				<a href="/cc?themeId=ninjaanime&bs=girl">Girl (Ninja)</a>
-				<hr>
-				<h2>Peepz</h2>
-				<a href="/cc?themeId=cc2&bs=default">Lil Peepz</a>
-				<a href="/cc?themeId=chibi&bs=default">Chibi Peepz</a>
-				<a href="/cc?themeId=ninja&bs=default">Chibi Ninjas</a>
+				<a onclick="document.getElementById('file').click()">Movie</a>
+				<a onclick="document.getElementById('file2').click()">Character</a>
 			</nav>
 		</div>
-		<div id="browse_chars" class="dropdown_contain button_small">
-			<div class="dropdown_button">BROWSE CHARACTERS</div>
-			<nav class="dropdown_menu">
-				<a href="/cc_browser?themeId=family">Comedy World</a>
-				<a href="/cc_browser?themeId=anime">Anime</a>
-				<a href="/cc_browser?themeId=ninjaanime">Ninja Anime</a>
-				<a href="/cc_browser?themeId=cc2">Lil' Peepz</a>
-				<a href="/cc_browser?themeId=chibi">Chibi Peepz</a>
-				<a href="/cc_browser?themeId=ninja">Chibi Ninjas</a>
-			</nav>
-		</div>
-		<a href="themelist.html" id="videomaker" class="button_big">MAKE A VIDEO</a>
+		<a href="create.html" class="button_big">CREATE</a>
 	</nav>
 </header>
 <!--<div class="warning">text goes here</div>-->
@@ -71,3 +42,30 @@
 	</main>
 	<script src="..\js\GetMovieListGrid.js"></script>
 </body>
+
+<footer>
+	<nav id="foot-left">
+		<span title="Wrapper: Offline vWRAPPER_VER, build WRAPPER_BLD">vWRAPPER_VER</span>
+		<a href="https://localhost:4664/faq.html">FAQ</a>
+		<a href="https://discord.gg/yhGAetN">Wrapper Hub</a>
+	</nav>
+
+	<nav id="foot-right">
+		<a href="https://localhost:4664">Server Page</a>
+		<a href="https://localhost:4664/caillou.html">Caillou</a>
+	</nav>
+</footer>
+
+<!-- Upload forms -->
+<form enctype='multipart/form-data' action='/upload_movie' method='post'>
+	<input id='file' type="file" onchange="this.form.submit()" name='import' />
+</form>
+
+<form enctype='multipart/form-data' action='/upload_character' method='post'>
+	<input id='file2' type="file" onchange="this.form.submit()" name='import' accept=".xml" />
+</form>
+
+<!-- Load video list -->
+<script src="..\js\videolist.js"></script>
+
+</html>
